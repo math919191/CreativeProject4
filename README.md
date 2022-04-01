@@ -2,12 +2,113 @@
 Last Creative project for CS 260
 
 
-Mongo -- Database
+I really want to implement the API from google books with the site. I am willing to put in the work to do this.
+If we do that here is what the site might end up looking like: 
 
-multiple collections
+Here is what potentially it can look like:
+Multiple Pages
+ - home page
+ - completed page
+ - list to read page
+ - favorites page
+ - search page
+ - an about page
+ 
+ Things To Do -- Overarching Ideas
+  - implement the search function
+  - implement the database abilities
+  - correct git hub footer
+  - implement buttons on cards
+  - push it up on to the server
+  
+ 
+ 
+ Each of these can be their own collection with a slightly different schema:
+ 
+  completed
+   - title
+   - cover
+   - author
+   - review (# of stars)
+   - notes on the book
+   - description of the book
+   - date completed
+  favorites
+   - title
+   - cover
+   - author
+   - review (# of stars)
+   - notes on the book
+   - description of the book
+   - overall ranking
+  list to read
+   - title
+   - cover
+   - author
+   - description of the book
 
-collection for all the books
-collection for all the reviews
+Each book card looks a little different:
+ completed
+   - edit review
+   - edit description
+   - remove from completed list
+   - edit date completed
+   - add notes
+   - add to favorites list
+ favorites
+   - edit review
+   - edit description
+   - remove from favorites list
+   - edit date completed
+   - edit ranking
+ list to read
+   - be able to remove from list
+   - be able to add to completed
+   - be able to add to favorites
+ search
+   - add to completed
+   - add to list to read
+   - add to favorites
+ 
+
+More specific:
+- google books API
+     - this includes using vue cli
+     - use google books api
+     - fix the bug where sometimes only some books show up
+- buttons
+     - this is more visual
+     - the buttons should call functions -- starting with just console log statements
+     - the buttons should probably be implemented before trying to do the database?
+- database
+    - create an accounte we can both use   
+    - create the seperate collections
+    - create schemas for each of the collections
+    - see more information above
+- integrate database and website
+    - have all the buttons work
+      - search page: add to favorites
+      - search page: add to completed
+      - search page: add to list
+      - completed page: add to favorites
+      - completed page: remove from completed page
+      - completed page: edit items in completed -- date / reviews / notes
+      - etc etc I think theres 6ish more things
+      - 
+
+
+
+
+
+Things I want to do today:
+  - figure out how vue cli and express work together
+  - agree on what we want the site to look like
+  - divide out the workload
+  
+
+
+
+
 
 
 This is a creative project, so you are welcome to build what you would like. The basic requirements are:
@@ -19,22 +120,11 @@ The site has multiple pages (multiple views in the Router)
 The site contains a footer that links to your public GitHub repository
 In addition, the site should have a robust data model. Ideally, this should be multiple collections of documents and a detailed schema for each collection. For example, if you were building a recipe site, you could have a collection for recipes and for people. The recipes should have a robust schema, such as name, description, ingredient list, photo. The people should have a robust schema, such as name, interests, favorite recipes, etc.  You want to avoid having an overly simplistic site.
 
-The GitHub repository should be in your own GitHub account.
-
-
-Please submit to Canvas the URL for your web server, where your code is running (e.g. on your DigitalOcean server). On this website, in a footer, you must include a link to your GitHub repository. Use a unique URL for the project, e.g. cp3.emmasmith.org.
-
-If you worked with a pair programming partner, both of you should submit the assignment and both of you should list the other person's name in the website footer and in the assignment submission.
-
-We will grade your projects based on:
-
-you used the Vue CLI for the front end, with multiple pages
-you used Node, Express, and Mongo for the back end,
-you have an API that includes creating, reading, updating and deleting data on the back end,
-you have a robust data model,
-how well you follow web design principles: spacing, typography, color, consistency, and responsive design.
-TAs will assign scores in these ranges:
 
 90-100: Excellent use of Vue CLI, Node, Express, and Mongo, robust data model, and clearly follows web design principles
-80-90: Uses Vue CLI, Node, Express and Mongo, good effort was made, but needs a little richer data model or a more complete API or web design principles were completely ignored
-70-80: Fulfills the minimum requirement of using Vue CLI, Node, Express, and Mongo, but the site, data model, and/or API are too simple
+We will grade your projects based on:
+ - you used the Vue CLI for the front end, with multiple pages
+ - you used Node, Express, and Mongo for the back end,
+ - you have an API that includes creating, reading, updating and deleting data on the back end,
+ - you have a robust data model,
+ - how well you follow web design principles: spacing, typography, color, consistency, and responsive design.
