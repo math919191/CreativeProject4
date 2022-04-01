@@ -33,6 +33,7 @@ Multiple Pages
    - notes on the book
    - description of the book
    - date completed
+
   favorites
    - title
    - cover
@@ -41,6 +42,8 @@ Multiple Pages
    - notes on the book
    - description of the book
    - overall ranking
+
+
   list to read
    - title
    - cover
@@ -55,16 +58,19 @@ Each book card looks a little different:
    - edit date completed
    - add notes
    - add to favorites list
+ 
  favorites
    - edit review
    - edit description
    - remove from favorites list
    - edit date completed
    - edit ranking
+ 
  list to read
    - be able to remove from list
    - be able to add to completed
    - be able to add to favorites
+ 
  search
    - add to completed
    - add to list to read
@@ -72,20 +78,20 @@ Each book card looks a little different:
  
 
 More specific:
-- google books API
+google books API
      - this includes using vue cli
      - use google books api
      - fix the bug where sometimes only some books show up
-- buttons
+buttons
      - this is more visual
      - the buttons should call functions -- starting with just console log statements
      - the buttons should probably be implemented before trying to do the database?
-- database
+ database
     - create an accounte we can both use   
     - create the seperate collections
     - create schemas for each of the collections
     - see more information above
-- integrate database and website
+integrate database and website
     - have all the buttons work
       - search page: add to favorites
       - search page: add to completed
