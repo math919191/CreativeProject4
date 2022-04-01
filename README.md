@@ -92,6 +92,8 @@ buttons
     - create schemas for each of the collections
     - see more information above
 integrate database and website
+
+
     - have all the buttons work
       - search page: add to favorites
       - search page: add to completed
@@ -111,6 +113,29 @@ Things I want to do today:
   - agree on what we want the site to look like
   - divide out the workload
   
+
+
+
+
+Kelly
+ - add buttons to the cards
+ 	- completed / list / api card 
+ - create schema
+ - start adding database functionality
+ - git hub footer
+
+Rebekah
+- init project 
+- api working
+- start adding database functionality
+ 
+
+Database to connect them
+
+
+look into creating another account
+
+- send my connection string - password and username
 
 
 
