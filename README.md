@@ -1,3 +1,10 @@
+## Read me!
+Inside of front-end and then cp4-vue-cli is the basic vue cli for the project
+I mostly just copied the stuff over from the other project
+I somehow messed up the CSS....
+Hopefully this is enough to at least get started.
+
+
 # CreativeProject4
 Last Creative project for CS 260
 
