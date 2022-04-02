@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import Completed from '../views/CompletedView.vue'
 import List from '../views/List.vue'
 import About from '../views/AboutView.vue'
+import Search from '../views/SearchView.vue'
 
 
 Vue.use(VueRouter)
@@ -32,7 +33,12 @@ const routes = [
     path: '/list',
     name: 'list',
     component: List
-  }
+  }, 
+  {
+    path: '/search',
+    name: 'search',
+    component: Search
+  },
 ]
 
 const router = new VueRouter({

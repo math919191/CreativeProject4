@@ -14,9 +14,15 @@
           <li class="nav-item">
             <router-link to="/list" class="nav-link">List</router-link>
           </li>
+
           <li class="nav-item">
             <router-link to="/completed" class="nav-link">Completed</router-link>
           </li>
+
+          <li class="nav-item">
+            <router-link to="/search" class="nav-link">Search</router-link>
+          </li>
+
 
           <li class="nav-item">
             <router-link to="/about" class="nav-link">About</router-link>
