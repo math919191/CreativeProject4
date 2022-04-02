@@ -55,7 +55,6 @@ export default {
         async addToDatabase(result) {
             console.log("being called");
             try {
-
                 let r2 = await axios.post('/api/books', {
                     title: result.volumeInfo.title,
                     //description: result.volumeInfo.description,
@@ -63,11 +62,9 @@ export default {
                 });
                 this.addItem = r2.data;
                 
-
             } catch (error){
                 console.log(error);
             }
-
         },
 
 // async upload() {

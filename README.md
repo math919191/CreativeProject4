@@ -4,7 +4,28 @@ I mostly just copied the stuff over from the other project
 I somehow messed up the CSS....
 Hopefully this is enough to at least get started.
 
-the schemas need ISBN s so we can identify them...
+Alrighty, I also have the database set up. Currently, it's just adding the title but that is enough right now. I set up a VERY basic schema with just a title that needs to be fixed, but I wanted to make sure that the database is working. It is. 
+If we could figure out how to add the entire json object from the google books straight into the database that would be really useful. 
+the schemas might need ISBNs so we can identify them...
+
+There is a way for me to grant you access to my Database cluster.
+I think I need your mongo information.  
+Let me know if you want me to do that. It might be helfpul. 
+I'm putting the URL telling me how here... so I can find it again
+https://www.mongodb.com/docs/atlas/security-add-mongodb-users/
+
+Anyway... let me know if you have any questions. I'm feeling better about finishing it now. 
+One you get the cards working, I don't think it'll be too bad to finish it!
+
+
+Get it started: 
+cd back-end
+node server.js
+in another terminal:
+cd front-end
+cd cp4-vue-cli
+npm run serve
+It opens on 8080
 
 
 # CreativeProject4

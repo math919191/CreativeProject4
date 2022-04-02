@@ -29,7 +29,6 @@ const bookSchema = new mongoose.Schema({
   
 // Create a new item in the museum: takes a title and a path to an image.
 app.post('/api/books', async (req, res) => {
-    
     const book = new Book({
       title: req.body.title,
       //description: req.body.description,
@@ -44,4 +43,5 @@ app.post('/api/books', async (req, res) => {
     }
   });
 
+  
   app.listen(3000, () => console.log('Server listening on port 3000!'));
