@@ -19,13 +19,13 @@ One you get the cards working, I don't think it'll be too bad to finish it!
 
 
 Get it started: 
-cd back-end
-node server.js
-in another terminal:
-cd front-end
-cd cp4-vue-cli
-npm run serve
-It opens on 8080
+- cd back-end
+- node server.js
+- in another terminal:
+- cd front-end
+- cd cp4-vue-cli
+- npm run serve
+- It opens on 8080
 
 
 # CreativeProject4
