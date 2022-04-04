@@ -3,7 +3,7 @@
     <br>
     <h1>Completed Books</h1>
     <br>
-    <BookList />
+    <!-- <BookList /> -->
   </div>
 </template>
 
