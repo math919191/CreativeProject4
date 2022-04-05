@@ -34,6 +34,7 @@ export default {
             result: "",
             whichList: "",
             bookID: null,
+            jsonID: null,
             
         }
     },
@@ -42,12 +43,8 @@ export default {
         async search() {
             try {
                 let myurl = "https://www.googleapis.com/books/v1/volumes?q=" + this.userSearch + "&key=" + this.KEY;
-                console.log(myurl);
-                
                 let response = await axios.get(myurl);
-                console.log("response" , response);
                 this.searchResults = response.data.items;
-                console.log(this.searchResults = response.data.items);
                 return true;
             } catch (error) {
                 console.log(error);
@@ -57,7 +54,19 @@ export default {
         async addTo(whichList, result){
             //if it's not already in the database
             //add it to the database
-            await this.addToDatabase(result);
+            console.log("add to function");
+            console.log("result id ", result.id);
+            let thisID = await this.getIdIfInDatabase(result.id);
+            console.log(thisID);
+            console.log("line 100");
+            console.log("inDatabase", this.inDatabase )
+            if (this.inDatabase.data != false){
+                this.bookID = this.inDatabase.data;
+            } else {
+                await this.addToDatabase(result);
+            }
+
+
             
             this.whichList = whichList;
              
@@ -77,21 +86,38 @@ export default {
             }
         },
 
+        
+        async getIdIfInDatabase(jsonID){
+            try {
+                //let jsonID = givenjsonID;
+                console.log("givenJSON", jsonID);
+                this.jsonID = jsonID;
+                let response = await axios.get("/api/books/" + this.jsonID)
+                
+                this.inDatabase = response;
+                return response;
+            } catch (error){
+                console.log(error);
+            }
+        },
+
         async addToDatabase(result) {
+            
             //TODO check that it's not already in the database before we add it
             //set the book ID
+            //checks if it is in the database and sets the book ID to the book that we are one
             
+
             this.result = result;
         
             try {
+
                 let r2 = await axios.post('/api/books', {
                     result: this.result,
                 });
                 this.addItem = r2.data;
-                console.log(r2);
-                console.log(r2.data._id);
+            
                 this.bookID = r2.data._id;
-                console.log(this.bookID)        
             } catch (error){
                 console.log(error);
             }

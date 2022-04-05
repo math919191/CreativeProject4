@@ -35,6 +35,7 @@ mongoose.connect(myUrl, {
     inFavorites: Boolean,
     inReadingList: Boolean,
     inCompletedList: Boolean,
+    jsonID: String,
 
   });
 
@@ -68,9 +69,7 @@ mongoose.connect(myUrl, {
       //   _id: req.params.id
       // });
       //console.log(req.params.id);
-      console.log("here");
-      console.log("myid", req.params.id);
-
+      
       let book = await Book.findOne({
         _id: req.params.id
       });
@@ -111,6 +110,7 @@ mongoose.connect(myUrl, {
       inFavorites: false,
       inReadingList: false,
       inCompletedList: false,
+      jsonID: req.body.result.id
     });
 
     try {
@@ -122,5 +122,47 @@ mongoose.connect(myUrl, {
     }
   });
   
+  app.get('/api/books/:jsonID', async (req, res) =>{
+    try {
+      //go through
+      console.log("here!");
+      
+      console.log("myJSON", req.params.jsonID);
+      
+      let myBook = await Book.findOne({
+        jsonID: req.params.jsonID,
+      });
+      console.log("here!!");
+      if (myBook == null){
+        res.send(false);
+      } else {
+        res.send(myBook._id);
+      }
+
+    } catch {
+      console.log(error);
+      res.sendStatus(500);
+    }
+
+
+  });
+
+
+  app.delete('/api/books/:id', async (req, res) => {
+    try {
+      
+      await Book.deleteOne({
+        _id: req.params.id,
+      });
+  
+      res.sendStatus(200);
+  
+    } catch (error){
+      console.log(error);
+      res.sendStatus(500);    
+    };
+  
+  });
+
   app.listen(3000, () => console.log('Server listening on port 3000!'));
 
