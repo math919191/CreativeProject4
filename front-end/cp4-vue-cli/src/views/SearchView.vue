@@ -3,16 +3,19 @@
         <h1>Search</h1>
         <input placeholder="Search for a Book" type="text" v-model="userSearch">
         <button @click="search()">Search</button>
-
+        <button @click="getAllBooks()">GET ALL THOSE BOOKS</button>
+        
         <div class="image" v-for="result in searchResults" :key="result.id">
             <h2>{{result.volumeInfo.title}}</h2>
             <p>{{result.volumeInfo.authors}}</p>
             <button @click="addToDatabase(result)">Add To Database</button>
-            <button @click="addTo('completed', result)">Add To Completed List</button>
-            <button @click="addTo('favorites', result)">Add To Favorites List</button>
-            <button @click="addTo('booksToRead', result)">Add To Books To Read List</button>
+            <button @click="addToList('completed', result)">Add To Completed List</button>
+            <button @click="addToList('favorites', result)">Add To Favorites List</button>
+            <button @click="addToList('booksToRead', result)">Add To Books To Read List</button>
+            <button @click="removeFromList('completed', result)">Remove Completed</button>
+            <button @click="removeFromList('favorites', result)">Remove Favorites</button>
+            <button @click="removeFromList('booksToRead', result)">Remove Reading List</button>
             
-
         </div>
         
 
@@ -51,15 +54,22 @@ export default {
             }
         },
 
-        async addTo(whichList, result){
-            //if it's not already in the database
-            //add it to the database
-            console.log("add to function");
-            console.log("result id ", result.id);
-            let thisID = await this.getIdIfInDatabase(result.id);
-            console.log(thisID);
-            console.log("line 100");
-            console.log("inDatabase", this.inDatabase )
+
+        async removeFromList(whichList, whichBook){
+            try {
+                this.whichList = whichList;
+                await axios.put("/api/books/remove/" + whichBook._id, {
+                    whichList: this.whichList,
+                });
+                return true;
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        async addToList(whichList, result){
+            //if it's not already in the database add it to the database
+            await this.getIdIfInDatabase(result.id);
             if (this.inDatabase.data != false){
                 this.bookID = this.inDatabase.data;
             } else {
@@ -71,7 +81,6 @@ export default {
             try {
                 await axios.put("/api/books/" + this.bookID, {
                     whichList: this.whichList,
-                    
                 });
                 this.bookID = null;
                 //this.findItem = null;
@@ -80,6 +89,16 @@ export default {
 
             } catch (error){
                 console.log(error);
+            }
+        },
+
+        async getAllBooks(){
+            try {
+                let myBooks = await axios.get('/api/allbooks');
+                return myBooks;
+            } catch (error){
+                console.log(error);
+
             }
         },
 

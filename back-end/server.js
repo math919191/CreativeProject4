@@ -49,7 +49,6 @@ mongoose.connect(myUrl, {
       let book = await Book.findOne({
         _id: req.params.id
       });
-      console.log('here2')
       if (req.body.whichList == 'completed'){
           book.inCompletedList = true;
       } else if (req.body.whichList == 'favorites'){
@@ -67,6 +66,28 @@ mongoose.connect(myUrl, {
     }
   });
     
+  app.put('/api/books/remove/:id', async (req, res) => {
+    try {
+      
+      let book = await Book.findOne({
+        _id: req.params.id
+      });
+      if (req.body.whichList == 'completed'){
+          book.inCompletedList = false;
+      } else if (req.body.whichList == 'favorites'){
+          book.inFavorites = false;
+      } else if (req.body.whichList == 'booksToRead'){
+          book.inReadingList = false;
+      } 
+      
+      book.save();
+      res.sendStatus(200);
+      
+    } catch (error){
+      console.log(error);
+      res.sendStatus(500);    
+    }
+  });
 
 
   app.post('/api/books', async (req, res) => {
@@ -100,12 +121,25 @@ mongoose.connect(myUrl, {
       let myBook = await Book.findOne({
         jsonID: req.params.jsonID,
       });
-      console.log("here!!");
       if (myBook == null){
         res.send(false);
       } else {
         res.send(myBook._id);
       }
+
+    } catch {
+      console.log(error);
+      res.sendStatus(500);
+    }
+
+
+  });
+
+  app.get('/api/allbooks', async (req, res) =>{
+    try {
+      
+      let books = await Book.find();
+      res.send(books);
 
     } catch {
       console.log(error);
