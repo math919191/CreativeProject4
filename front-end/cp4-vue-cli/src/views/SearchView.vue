@@ -24,9 +24,15 @@
 </template>
 
 <script>
+
+import shared from '../shared.js'
+
 import axios from "axios"
 export default {
     name: "Search", 
+    created() { 
+      this.foo = shared.foo; // now you can call this.foo() (in your functions/template)
+    },
     
     data() {
         return {
@@ -57,6 +63,7 @@ export default {
 
         async removeFromList(whichList, whichBook){
             try {
+                
                 this.whichList = whichList;
                 await axios.put("/api/books/remove/" + whichBook._id, {
                     whichList: this.whichList,
@@ -69,6 +76,7 @@ export default {
 
         async addToList(whichList, result){
             //if it's not already in the database add it to the database
+            
             await this.getIdIfInDatabase(result.id);
             if (this.inDatabase.data != false){
                 this.bookID = this.inDatabase.data;
@@ -95,7 +103,8 @@ export default {
         async getAllBooks(){
             try {
                 let myBooks = await axios.get('/api/allbooks');
-                return myBooks;
+                console.log(myBooks);
+                return myBooks.data;
             } catch (error){
                 console.log(error);
 

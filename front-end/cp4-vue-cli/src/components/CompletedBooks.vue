@@ -2,14 +2,16 @@
 
 <div class="wrapper">
   <div class="rec">
-    <div v-for="book in completedBooks" :key="book.id">
+    <button  @click="getAllCompletedBooks()">MakeList</button>
+
+    <div v-for="book in this.myCompleted" :key="book._id">
         <div class="book">
-          <div class="rec-book"><img :src ="'/images/' + book.image"></div>
+          <div class="rec-book"><img :src =book.coverImage></div>
             <div class="description">
               <h6>{{ book.title }}</h6>
               <p>By: {{ book.author }}</p>
               <p>{{ book.description }}</p>
-              <button class="auto" @click="removeBook(book)">Remove</button>
+              <button class="auto" @click="removeFromList('completed', book)">Remove</button>
             </div>
         </div>
     </div>
@@ -21,17 +23,74 @@
 </template>
 
 <script>
+import axios from 'axios'
+import shared from '../shared.js'
+//import searchFunctions from '../views/SearchView.vue'
 export default {
     name: 'CompletedBooks',
+    
+    data() {
+        return {
+          allBooks: [],
+          myCompleted: [],
+            
+        }
+    },
+
+    created() { 
+      this.foo = shared.foo; // now you can call this.foo() (in your functions/template)
+      //this.getAllBooks = searchFunctions.getAllBooks();
+    },
     computed: {
         completedBooks() {
+            //return allBooks.filter(book => book.inCompletedList == true) 
             return this.$root.$data.completedBooks;
         }
     },
     methods: {
-      removeBook(book) {
-        this.$root.$data.completedBooks.splice(this.$root.$data.completedBooks.indexOf(book.id), 1);
-      }
+      removeBook() {
+        console.log("here")
+        this.foo();
+        //this.$root.$data.completedBooks.splice(this.$root.$data.completedBooks.indexOf(book.id), 1);
+      },
+      
+      async getAllBooks(){
+            try {
+                let myBooks = await axios.get('/api/allbooks');
+                console.log(myBooks);
+                return myBooks;
+            } catch (error){
+                console.log(error);
+
+            }
+      }, 
+      
+      async removeFromList(whichList, whichBook){
+            try {
+                
+                this.whichList = whichList;
+                await axios.put("/api/books/remove/" + whichBook._id, {
+                    whichList: this.whichList,
+                });
+                await this.getAllCompletedBooks();
+                return true;
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+      async getAllCompletedBooks(){
+        try {
+          let myBooks = await this.getAllBooks();
+          this.allBooks = myBooks.data;
+          let completed = this.allBooks.filter(book => book.inCompletedList == true);
+          this.myCompleted = completed;
+        } catch (error) {
+            console.log(error);
+
+        }
+      },
+      
     }
 }
 </script>

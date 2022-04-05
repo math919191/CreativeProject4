@@ -81,6 +81,11 @@ mongoose.connect(myUrl, {
       } 
       
       book.save();
+
+      if (book.inCompletedList == false && book.inFavorites == false == book.inReadingList == false ){
+        //delete the book
+      }
+
       res.sendStatus(200);
       
     } catch (error){
