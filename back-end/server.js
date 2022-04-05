@@ -57,6 +57,45 @@ mongoose.connect(myUrl, {
       res.sendStatus(500);
     }
   }); */
+  
+
+
+
+
+  app.put('/api/books/:id', async (req, res) => {
+    try {
+      // let item = await Item.findOne({
+      //   _id: req.params.id
+      // });
+      //console.log(req.params.id);
+      console.log("here");
+      console.log("myid", req.params.id);
+
+      let book = await Book.findOne({
+        _id: req.params.id
+      });
+      console.log('here2')
+      if (req.body.whichList == 'completed'){
+          book.inCompletedList = true;
+      } else if (req.body.whichList == 'favorites'){
+          book.inFavorites = true;
+      } else if (req.body.whichList == 'booksToRead'){
+          book.inReadingList = true;
+      } 
+  //    item.title = req.body.title;
+  //    item.description = req.body.description;
+
+  //
+      
+      book.save();
+      res.sendStatus(200);
+      
+    } catch (error){
+      console.log(error);
+      res.sendStatus(500);    
+    }
+  });
+    
 
 
   app.post('/api/books', async (req, res) => {
@@ -84,3 +123,4 @@ mongoose.connect(myUrl, {
   });
   
   app.listen(3000, () => console.log('Server listening on port 3000!'));
+

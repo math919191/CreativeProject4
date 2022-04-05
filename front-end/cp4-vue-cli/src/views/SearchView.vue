@@ -32,6 +32,8 @@ export default {
             userSearch: "",
             addItem: null,
             result: "",
+            whichList: "",
+            bookID: null,
             
         }
     },
@@ -55,28 +57,45 @@ export default {
         async addTo(whichList, result){
             //if it's not already in the database
             //add it to the database
-            this.addToDatabase(result);
+            await this.addToDatabase(result);
+            
+            this.whichList = whichList;
+             
             //modify the complete / favorites / list properity depending on what we want to modify 
             try {
-                console.log("placeholder");
+                await axios.put("/api/books/" + this.bookID, {
+                    whichList: this.whichList,
+                    
+                });
+                this.bookID = null;
+                //this.findItem = null;
+                //this.getItems();
+                return true;
+
             } catch (error){
                 console.log(error);
             }
         },
 
         async addToDatabase(result) {
+            //TODO check that it's not already in the database before we add it
+            //set the book ID
+            
             this.result = result;
         
             try {
                 let r2 = await axios.post('/api/books', {
-                    title: result.volumeInfo.title,
                     result: this.result,
                 });
                 this.addItem = r2.data;
-                
+                console.log(r2);
+                console.log(r2.data._id);
+                this.bookID = r2.data._id;
+                console.log(this.bookID)        
             } catch (error){
                 console.log(error);
             }
+        
         },
 
 
