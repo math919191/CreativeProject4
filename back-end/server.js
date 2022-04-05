@@ -42,33 +42,9 @@ mongoose.connect(myUrl, {
   //const Book = mongoose.model('Book', bookSchema);
   const Book = mongoose.model('completedBook', completedBookSchema);
 
-  
-// Create a new item in the museum: takes a title and a path to an image.
-/*app.post('/api/books', async (req, res) => {
-    const book = new Book({
-      title: req.body.title,
-      //description: req.body.description,
-      //jsonObject: req.body.jsonObject,
-    });
-    try {
-      await book.save();
-      res.send(book);
-    } catch (error) {
-      console.log(error);
-      res.sendStatus(500);
-    }
-  }); */
-  
-
-
-
 
   app.put('/api/books/:id', async (req, res) => {
     try {
-      // let item = await Item.findOne({
-      //   _id: req.params.id
-      // });
-      //console.log(req.params.id);
       
       let book = await Book.findOne({
         _id: req.params.id
@@ -81,10 +57,6 @@ mongoose.connect(myUrl, {
       } else if (req.body.whichList == 'booksToRead'){
           book.inReadingList = true;
       } 
-  //    item.title = req.body.title;
-  //    item.description = req.body.description;
-
-  //
       
       book.save();
       res.sendStatus(200);
@@ -124,10 +96,6 @@ mongoose.connect(myUrl, {
   
   app.get('/api/books/:jsonID', async (req, res) =>{
     try {
-      //go through
-      console.log("here!");
-      
-      console.log("myJSON", req.params.jsonID);
       
       let myBook = await Book.findOne({
         jsonID: req.params.jsonID,

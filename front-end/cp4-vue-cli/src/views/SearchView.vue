@@ -65,12 +65,9 @@ export default {
             } else {
                 await this.addToDatabase(result);
             }
-
-
             
             this.whichList = whichList;
              
-            //modify the complete / favorites / list properity depending on what we want to modify 
             try {
                 await axios.put("/api/books/" + this.bookID, {
                     whichList: this.whichList,
@@ -89,7 +86,6 @@ export default {
         
         async getIdIfInDatabase(jsonID){
             try {
-                //let jsonID = givenjsonID;
                 console.log("givenJSON", jsonID);
                 this.jsonID = jsonID;
                 let response = await axios.get("/api/books/" + this.jsonID)
@@ -103,11 +99,6 @@ export default {
 
         async addToDatabase(result) {
             
-            //TODO check that it's not already in the database before we add it
-            //set the book ID
-            //checks if it is in the database and sets the book ID to the book that we are one
-            
-
             this.result = result;
         
             try {
