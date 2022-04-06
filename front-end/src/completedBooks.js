@@ -11,4 +11,4 @@ let mock = [
     { id: 10, title:"Vagram", author:"Yellowlee", description:"dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien", image:"educated.jpeg"},
     ]
     
-    export default mock;
+    export default mock; 
