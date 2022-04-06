@@ -20,7 +20,7 @@
             <router-link to="/search" class="nav-link">Search</router-link>
           </li>
 
-
+ 
           <li class="nav-item">
             <router-link to="/about" class="nav-link">About</router-link>
           </li>
@@ -56,15 +56,12 @@
   color: #2c3e50;
 }
 
-
-
-
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Courgette", cursive;
-    
+    box-sizing: border-box;  
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
 }
 body {
   background-color: #7796cbff;
@@ -74,9 +71,14 @@ body {
 .bg-light {
     background-color: #E8DDB5!important;
   }
-   .navbar-light .navbar-nav .nav-link {
-        font-size: 1.5em;
-  }
+
+.navbar-light .navbar-nav .nav-link {
+      font-size: 1.5em;
+}
+h1, h2, a {
+  font-family: "Courgette", cursive;
+}
+
 /* nav {
   padding: 30px;
 }
