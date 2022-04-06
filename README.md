@@ -18,14 +18,17 @@ Anyway... let me know if you have any questions. I'm feeling better about finish
 One you get the cards working, I don't think it'll be too bad to finish it!
 
 
+4/5/22 -- so I kept working on it. I created the database schema and now can add things to the database from the search and edit them. I also added functionality to the completed page. Right now, the CSS is really bad because I messed it up. Anyway.... I added a couple of buttons to different cards to test functionality. I am struggling to figure out a way to use the same functions across different vue compenents. I ended up copying and pasting to get the completed to work, but I need to fix that.  
+
+
 Get it started: 
-- cd back-end
-- node server.js
-- in another terminal:
-- cd front-end
-- cd cp4-vue-cli
-- npm run serve
-- It opens on 8080
+-- cd back-end
+-- node server.js
+-- in another terminal:
+-- cd front-end
+-- cd cp4-vue-cli
+-- npm run serve
+-- It opens on 8080
 
 
 # CreativeProject4
