@@ -166,6 +166,9 @@ export default {
     margin: 20px;
     border: thick black 10px;
 }
+h2 {
+  font-family: "Courgette", cursive;
+}
 
 </style>
 
