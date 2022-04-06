@@ -1,4 +1,7 @@
-## Read me!![image_67156225](https://user-images.githubusercontent.com/95512267/162015809-5565561f-e436-44f9-bc87-a49bcb5a8444.JPG)
+## Read me!!
+
+![image_67156225 2](https://user-images.githubusercontent.com/95512267/162015993-919b0402-3dec-4d47-a145-65869cee1e62.JPG)
+
 
 Inside of front-end and then cp4-vue-cli is the basic vue cli for the project
 I mostly just copied the stuff over from the other project
