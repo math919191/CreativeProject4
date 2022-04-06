@@ -75,6 +75,10 @@ export const databasemixins = {
         }
       },
 
+      async edit(){
+          console.log("editting function");
+      }
+
       
 
 
