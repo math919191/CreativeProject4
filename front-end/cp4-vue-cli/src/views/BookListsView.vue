@@ -1,9 +1,13 @@
 <template>
     <div>
-    <button  @click="switchComponent('favorites')">Favorites List</button>
-    <button  @click="switchComponent('completed')">Completed List</button>
-    <button  @click="switchComponent('booksToRead')">Reading List</button>
-
+        <div class="buttons">
+            <button  @click="switchComponent('favorites')">Favorites List</button>
+            <button  @click="switchComponent('completed')">Completed List</button>
+            <button  @click="switchComponent('booksToRead')">Reading List</button>
+            <button  @click="switchComponent('noList')">No List</button>
+            
+        </div>
+        <component :is="dynamicComponent" />
     </div>
 </template>
 
@@ -11,12 +15,13 @@
     import CompletedList from "../components/CompletedList.vue"
     import FavoritesList from "../components/FavoritesList.vue"
     import ReadingList from "../components/ReadingList.vue"
+    import NoSelectedList from "../components/NoSelectedList.vue"
     
     export default {
         name: "BooksLists", 
         data() {
             return {
-                whichComponent: "",    
+                dynamicComponent: NoSelectedList,    
             }
         },
         components: {
@@ -25,7 +30,16 @@
             ReadingList,
         },
         methods: {
-            switchComponent(){
+            switchComponent(whichList){
+                if (whichList == 'booksToRead'){
+                    this.dynamicComponent = ReadingList;
+                } else if (whichList == 'favorites'){
+                    this.dynamicComponent = FavoritesList;
+                } else if (whichList == 'completed'){
+                    this.dynamicComponent = CompletedList;
+                } else if (whichList == 'noList'){
+                    this.dynamicComponent = NoSelectedList;
+                }
 
             }
         }
