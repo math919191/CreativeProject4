@@ -47,7 +47,7 @@ mongoose.connect(myUrl, {
     try {
       
       let book = await Book.findOne({
-        id: req.params.id
+        _id: req.params.id
       });
       if (req.body.whichList == 'completed'){
           book.inCompletedList = true;
@@ -128,7 +128,7 @@ mongoose.connect(myUrl, {
       if (myBook == null){
         res.send(false);
       } else {
-        res.send(myBook.id);
+        res.send(myBook._id);
       }
 
     } catch {
@@ -171,4 +171,3 @@ mongoose.connect(myUrl, {
   });
 
   app.listen(3000, () => console.log('Server listening on port 3000!'));
-

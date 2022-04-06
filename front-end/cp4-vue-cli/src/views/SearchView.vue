@@ -83,7 +83,7 @@ export default {
         async addToListFromSearch(whichList, result){
             //if it's not already in the database add it to the database
             
-            await this.getIdIfInDatabase(result.id);
+            this.inDatabase = await this.getIdIfInDatabase(result.id);
             if (this.inDatabase.data != false){
                 this.bookID = this.inDatabase.data;
             } else {

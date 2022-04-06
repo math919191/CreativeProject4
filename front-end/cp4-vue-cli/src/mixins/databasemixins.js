@@ -66,7 +66,7 @@ export const databasemixins = {
 
       async addToList(whichList, result){       
         try {
-            await axios.put("/api/books/" + result.id, {
+            await axios.put("/api/books/" + result._id, {
                 whichList: whichList,
             });
             return true;
