@@ -1,20 +1,21 @@
 <template>
     <div>  
         <h1>Search</h1>
-        <input placeholder="Search for a Book" type="text" v-model="userSearch">
-        <button @click="search()">Search</button>
-        <button @click="getAllBooks()">GET ALL THOSE BOOKS</button>
-        
+        <form>
+            <input placeholder="Search for a Book" type="text" v-model="userSearch">
+            <input class="button" type="button" @click="search()" value="Search">
+            <input class="button" type="button" @click="getAllBooks()" value="GET ALL THOSE BOOKS">
+        </form>
         <div class="image" v-for="result in searchResults" :key="result.id">
             <h2>{{result.volumeInfo.title}}</h2>
             <p>{{result.volumeInfo.authors}}</p>
-            <button @click="addToDatabase(result)">Add To Database</button>
-            <button @click="addToListFromSearch('completed', result)">Add To Completed List</button>
-            <button @click="addToListFromSearch('favorites', result)">Add To Favorites List</button>
-            <button @click="addToListFromSearch('booksToRead', result)">Add To Books To Read List</button>
-            <button @click="removeFromList('completed', result)">Remove Completed</button>
-            <button @click="removeFromList('favorites', result)">Remove Favorites</button>
-            <button @click="removeFromList('booksToRead', result)">Remove Reading List</button>
+            <button class="button" @click="addToDatabase(result)">Add To Database</button>
+            <button class="button" @click="addToListFromSearch('completed', result)">Add To Completed List</button>
+            <button class="button" @click="addToListFromSearch('favorites', result)">Add To Favorites List</button>
+            <button class="button" @click="addToListFromSearch('booksToRead', result)">Add To Books To Read List</button>
+            <button class="button" @click="removeFromList('completed', result)">Remove Completed</button>
+            <button class="button" @click="removeFromList('favorites', result)">Remove Favorites</button>
+            <button class="button" @click="removeFromList('booksToRead', result)">Remove Reading List</button>
             
         </div>
         
@@ -24,9 +25,7 @@
 </template>
 
 <script>
-
 import shared from '../shared.js'
-
 import axios from "axios"
 export default {
     name: "SearchView", 
@@ -59,8 +58,6 @@ export default {
                 console.log(error);
             }
         },
-
-
         async removeFromList(whichList, whichBook){
             try {
                 
@@ -68,18 +65,15 @@ export default {
                 await axios.put("/api/books/remove/" + whichBook.id, {
                     whichList: this.whichList,
                 });
-
                 if (whichBook.inCompletedList == false && whichBook.inFavorites == false && whichBook.inReadingList == false ){
                     //delete the book 
                     await axios.delete("/api/books/" + whichBook.id);
                 }
-
                 return true;
             } catch (error) {
                 console.log(error)
             }
         },
-
         async addToListFromSearch(whichList, result){
             //if it's not already in the database add it to the database
             
@@ -100,12 +94,10 @@ export default {
                 //this.findItem = null;
                 //this.getItems();
                 return true;
-
             } catch (error){
                 console.log(error);
             }
         },
-
         async getAllBooks(){
             try {
                 let myBooks = await axios.get('/api/allbooks');
@@ -113,10 +105,8 @@ export default {
                 return myBooks.data;
             } catch (error){
                 console.log(error);
-
             }
         },
-
         
         async getIdIfInDatabase(jsonID){
             try {
@@ -130,13 +120,11 @@ export default {
                 console.log(error);
             }
         },
-
         async addToDatabase(result) {
             
             this.result = result;
         
             try {
-
                 let r2 = await axios.post('/api/books', {
                     result: this.result,
                 });
@@ -148,27 +136,22 @@ export default {
             }
         
         },
-
-
-
     }
-
 }
+
 
 </script>
 
 
 <style scoped>
-
+/* 
 .myBook {
     width: 500px;
     height: 500px;
     margin: 20px;
     border: thick black 10px;
-}
-h2 {
-  font-family: "Courgette", cursive;
-}
+} */
+
 
 </style>
 
