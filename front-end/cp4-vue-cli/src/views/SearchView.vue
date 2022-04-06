@@ -9,9 +9,9 @@
             <h2>{{result.volumeInfo.title}}</h2>
             <p>{{result.volumeInfo.authors}}</p>
             <button @click="addToDatabase(result)">Add To Database</button>
-            <button @click="addToList('completed', result)">Add To Completed List</button>
-            <button @click="addToList('favorites', result)">Add To Favorites List</button>
-            <button @click="addToList('booksToRead', result)">Add To Books To Read List</button>
+            <button @click="addToListFromSearch('completed', result)">Add To Completed List</button>
+            <button @click="addToListFromSearch('favorites', result)">Add To Favorites List</button>
+            <button @click="addToListFromSearch('booksToRead', result)">Add To Books To Read List</button>
             <button @click="removeFromList('completed', result)">Remove Completed</button>
             <button @click="removeFromList('favorites', result)">Remove Favorites</button>
             <button @click="removeFromList('booksToRead', result)">Remove Reading List</button>
@@ -65,16 +65,22 @@ export default {
             try {
                 
                 this.whichList = whichList;
-                await axios.put("/api/books/remove/" + whichBook._id, {
+                await axios.put("/api/books/remove/" + whichBook.id, {
                     whichList: this.whichList,
                 });
+
+                if (whichBook.inCompletedList == false && whichBook.inFavorites == false && whichBook.inReadingList == false ){
+                    //delete the book 
+                    await axios.delete("/api/books/" + whichBook.id);
+                }
+
                 return true;
             } catch (error) {
                 console.log(error)
             }
         },
 
-        async addToList(whichList, result){
+        async addToListFromSearch(whichList, result){
             //if it's not already in the database add it to the database
             
             await this.getIdIfInDatabase(result.id);

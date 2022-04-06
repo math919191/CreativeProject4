@@ -70,8 +70,10 @@ mongoose.connect(myUrl, {
     try {
       
       let book = await Book.findOne({
-        _id: req.params.id
+        id: req.params.id
       });
+      console.log(book.title);
+      console.log(req.body.whichList);
       if (req.body.whichList == 'completed'){
           book.inCompletedList = false;
       } else if (req.body.whichList == 'favorites'){
@@ -79,15 +81,9 @@ mongoose.connect(myUrl, {
       } else if (req.body.whichList == 'booksToRead'){
           book.inReadingList = false;
       } 
+      console.log(book.inCompletedList);
       
       book.save();
-
-      if (book.inCompletedList == false && book.inFavorites == false && book.inReadingList == false ){
-        //delete the book 
-        await axios.delete("/api/books/" + book._id);
-    }
-
-
 
       res.sendStatus(200);
       
@@ -162,7 +158,7 @@ mongoose.connect(myUrl, {
     try {
       
       await Book.deleteOne({
-        _id: req.params.id,
+        id: req.params.id,
       });
   
       res.sendStatus(200);

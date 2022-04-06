@@ -2,7 +2,8 @@
 
 <div class="wrapper">
   <div class="rec">
-    <button  @click="getAllBooksFromList('completed')">MakeList</button>
+    <button  @click="getAllBooksFromList('favorites')">Make Favorites List</button>
+    <button  @click="getAllBooksFromList('completed')">Make Completed List</button>
 
     <div v-for="book in this.myCompleted" :key="book._id">
         <div class="book">
@@ -11,7 +12,10 @@
               <h6>{{ book.title }}</h6>
               <p>By: {{ book.author }}</p>
               <p>{{ book.description }}</p>
-              <button class="auto" @click="removeFromList('completed', book)">Remove</button>
+              <button @click="removeFromList('completed', book)">Remove From Copmleted</button>
+              <button @click="removeFromList('favorites', book)">Remove From Favorites</button>
+              <button @click="addToList('favorites', book)">Add To Favorites List</button>
+              <button @click="addToList('booksToRead', book)">Add To Books To Read List</button>
             </div>
         </div>
     </div>
@@ -33,6 +37,7 @@ export default {
         return {
           allBooks: [],
           myCompleted: [],
+
             
         }
     },
@@ -67,21 +72,27 @@ export default {
       
       async removeFromList(whichList, whichBook){
             try {
+                console.log('whichlist', whichList);
+                console.log('book', whichBook.title);
                 
+                console.log(whichBook.inCompletedList);
                 this.whichList = whichList;
-                await axios.put("/api/books/remove/" + whichBook._id, {
+                await axios.put("/api/books/remove/" + whichBook.id, {
                     whichList: this.whichList,
                 });
+                console.log(whichBook.inCompletedList);
 
-            
-                
+                if (whichBook.inCompletedList == false && whichBook.inFavorites == false && whichBook.inReadingList == false ){
+                  //delete the book if it's not in any lists
+                  await axios.delete("/api/books/" + whichBook.id);
+                }
 
-                await this.getAllCompletedBooks();
                 return true;
             } catch (error) {
                 console.log(error)
             }
         },
+
 
       async getAllBooksFromList(whichList){
         try {
@@ -103,6 +114,24 @@ export default {
 
         }
       },
+
+      async addToList(whichList, result){
+            //if it's not already in the database add it to the database
+            
+            
+             
+            try {
+                await axios.put("/api/books/" + result._id, {
+                    whichList: whichList,
+                });
+                //this.findItem = null;
+                //this.getItems();
+                return true;
+
+            } catch (error){
+                console.log(error);
+            }
+        },
       
     }
 }
