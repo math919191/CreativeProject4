@@ -2,7 +2,7 @@
 
 <div class="wrapper">
   <div class="rec">
-    <button  @click="getAllCompletedBooks()">MakeList</button>
+    <button  @click="getAllBooksFromList('completed')">MakeList</button>
 
     <div v-for="book in this.myCompleted" :key="book._id">
         <div class="book">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-  </div>
+  </div> 
   <br>
   <br>
 </div>
@@ -44,7 +44,8 @@ export default {
     computed: {
         completedBooks() {
             //return allBooks.filter(book => book.inCompletedList == true) 
-            return this.$root.$data.completedBooks;
+            //return this.$root.$data.completedBooks;
+            return this.myCompleted;
         }
     },
     methods: {
@@ -57,7 +58,6 @@ export default {
       async getAllBooks(){
             try {
                 let myBooks = await axios.get('/api/allbooks');
-                console.log(myBooks);
                 return myBooks;
             } catch (error){
                 console.log(error);
@@ -72,6 +72,10 @@ export default {
                 await axios.put("/api/books/remove/" + whichBook._id, {
                     whichList: this.whichList,
                 });
+
+            
+                
+
                 await this.getAllCompletedBooks();
                 return true;
             } catch (error) {
@@ -79,12 +83,21 @@ export default {
             }
         },
 
-      async getAllCompletedBooks(){
+      async getAllBooksFromList(whichList){
         try {
           let myBooks = await this.getAllBooks();
           this.allBooks = myBooks.data;
-          let completed = this.allBooks.filter(book => book.inCompletedList == true);
-          this.myCompleted = completed;
+          //let completed = [];
+          if (whichList == 'completed'){
+            this.myCompleted = this.allBooks.filter(book => book.inCompletedList == true);
+          } else if (whichList == 'favorites'){
+            this.myCompleted = this.allBooks.filter(book => book.inFavorites == true);
+          } else if (whichList == 'readingList'){
+            this.myCompleted = this.allBooks.filter(book => book.inReadingList == true);
+          } 
+
+
+          //this.myCompleted = completed;
         } catch (error) {
             console.log(error);
 

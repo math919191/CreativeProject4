@@ -82,9 +82,12 @@ mongoose.connect(myUrl, {
       
       book.save();
 
-      if (book.inCompletedList == false && book.inFavorites == false == book.inReadingList == false ){
-        //delete the book
-      }
+      if (book.inCompletedList == false && book.inFavorites == false && book.inReadingList == false ){
+        //delete the book 
+        await axios.delete("/api/books/" + book._id);
+    }
+
+
 
       res.sendStatus(200);
       

@@ -12,7 +12,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/list" class="nav-link">List</router-link>
+            <router-link to="/list" class="nav-link">Reading List</router-link>
           </li>
 
           <li class="nav-item">
