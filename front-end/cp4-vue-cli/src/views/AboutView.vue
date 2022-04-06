@@ -4,10 +4,7 @@
 
       <div class="about-contain">
         <div class = "about-image">
-            <!-- <img id="po" src = "../images/po.jpg">
-              <img :src="'/images/products/'+product.image"> -->
             <img :src="'/images/po.jpeg'">
-
         </div>
 
         <div class="about-text">

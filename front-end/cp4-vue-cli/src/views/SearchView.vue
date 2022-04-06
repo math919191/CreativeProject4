@@ -29,7 +29,7 @@ import shared from '../shared.js'
 
 import axios from "axios"
 export default {
-    name: "Search", 
+    name: "SearchView", 
     created() { 
       this.foo = shared.foo; // now you can call this.foo() (in your functions/template)
     },
