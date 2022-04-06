@@ -47,7 +47,7 @@ mongoose.connect(myUrl, {
     try {
       
       let book = await Book.findOne({
-        _id: req.params.id
+        id: req.params.id
       });
       if (req.body.whichList == 'completed'){
           book.inCompletedList = true;
@@ -128,7 +128,7 @@ mongoose.connect(myUrl, {
       if (myBook == null){
         res.send(false);
       } else {
-        res.send(myBook._id);
+        res.send(myBook.id);
       }
 
     } catch {

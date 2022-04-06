@@ -142,7 +142,7 @@ export default {
                 });
                 this.addItem = r2.data;
             
-                this.bookID = r2.data._id;
+                this.bookID = r2.data.id;
             } catch (error){
                 console.log(error);
             }
