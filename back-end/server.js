@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 
 const mongoose = require('mongoose');
 
-const myUrl = "mongodb+srv://math919191:mongoPassword@cluster0.dwigb.mongodb.net/MyCompletedBooks?retryWrites=true&w=majority";
+const myUrl = "mongodb+srv://kelly:kelpy2K37K0!@cluster0.b4hfk.mongodb.net/books?retryWrites=true&w=majority";
 
 // connect to the database
 mongoose.connect(myUrl, {
@@ -172,6 +172,23 @@ mongoose.connect(myUrl, {
 
   });
 
+  app.get('/api/books/date/:id', async (req, res) =>{
+    try {
+      let book = await Book.find({
+        dateCompleted: req.body.dateCompleted,
+      });
+      if (book === null) {
+        res.send(false);
+      } else {
+        res.send(book.dateCompleted);
+      }
+    } catch {
+      console.log(error);
+      res.sendStatus(500);
+    }
+
+
+  });
 
   app.delete('/api/books/:id', async (req, res) => {
     try {

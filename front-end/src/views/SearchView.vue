@@ -132,12 +132,9 @@ export default {
             } catch (error){
                 console.log(error);
             }
-
         },
     }
 }
-
-
 </script>
 
 
@@ -149,7 +146,4 @@ export default {
     margin: 20px;
     border: thick black 10px;
 } */
-
-
 </style>
-

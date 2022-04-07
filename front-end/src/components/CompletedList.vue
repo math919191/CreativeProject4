@@ -15,8 +15,13 @@
                     <div class="date">
                         <div>
                             <form>
-                                <star-rating @rating-selected="setRating" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>
-                                <input v-model="dateCompleted" type="date">
+                                <star-rating @rating-selected="setRating" :rating="book.rating" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>
+                                <div v-if="isDate(book)">
+                                    <input v-model="dateCompleted" type="date">
+                                </div>
+                                <div v-else>
+                                    <input type="date" :value="book.dateCompleted">
+                                </div>
                                 <input class="button" type="button" value="Save" @click="update(book)">
                             </form>
                         </div> -->
@@ -47,7 +52,7 @@ export default {
 
     data() {
         return {
-          myCompletedList: [],   
+            myCompletedList: [],   
             rating: 0,
             dateCompleted: "",
         }
@@ -81,6 +86,17 @@ export default {
             console.log(rating);
             this.rating= rating;
         },
+        isDate(book){
+            if (book.dateCompleted !='') {
+                console.log(book.dateCompleted);
+                return false;
+            }
+            else {
+                                console.log(book.dateCompleted);
+
+                return true;
+            }
+        },
         async update(book) {
             try {
                 console.log(book._id);
@@ -90,7 +106,6 @@ export default {
                     rating: this.rating,
                     dateCompleted: this.dateCompleted,
                 });
-                this.rating = 0;
                 this.updateCompletedList;
                 return true;
             } catch(error) {
