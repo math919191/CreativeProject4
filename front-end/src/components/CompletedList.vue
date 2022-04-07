@@ -14,17 +14,17 @@
 
                     <div class="date">
                         {{dateCompleted}}
-                        <div v-if="Edit===true">
+                        <!-- <div v-if="Edit===true">
                             <form>
                                 <input id="dateCompleted" type="date">
                             </form>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="description">
                         <p>{{ book.description }}</p>
                     </div>
-                    <button @click="removeFromList('completed', book)">Remove From Completed List</button>                    
+                    <button @click="removeItem(book)">Remove From Completed List</button>                    
                     <button @click="addToList('favorites', book)">Add To Favorites List</button>
                     <button @click="edit()">Edit it</button>
             </div>
@@ -47,7 +47,8 @@ export default {
     data() {
         return {
           myCompletedList: [],   
-          rating: 0,         
+          rating: 0,
+          dateCompleted: "",         
         }
     },
 
@@ -65,6 +66,13 @@ export default {
             this.myCompletedList = await this.getAllBooksFromList('completed');
             
         },
+
+        async removeItem(book){
+            this.removeFromList('completed', book)
+            this.updateCompletedList();
+        
+        },
+
         setRating: function(rating) {
             this.rating=rating;
         }

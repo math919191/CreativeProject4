@@ -37,6 +37,7 @@ export const databasemixins = {
               await axios.delete("/api/books/" + whichBook.id);
             }
             console.log("REMOVE");
+            
             return true;
         } catch (error) {
             console.log(error)
@@ -64,10 +65,10 @@ export const databasemixins = {
         }
       },
 
-      async addToList(whichList, result){       
+      async addToList(myList, result){       
         try {
-            await axios.put("/api/books/" + result._id, {
-                whichList: whichList,
+            await axios.put("/api/books/" + result._id, { 
+                whichList: myList,
             });
             return true;
         } catch (error){

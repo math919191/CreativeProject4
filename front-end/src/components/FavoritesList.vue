@@ -10,7 +10,7 @@
                     <div class="description">
                         <p>{{ book.description }}</p>
                     </div>
-                    <button @click="removeFromList('favorites', book)">Remove From Favorites List</button>                    
+                    <button @click="removeItem()">Remove From Favorites List</button>                    
                     <button @click="edit()">Edit it</button>
             </div>
             <br>
@@ -42,7 +42,14 @@ export default {
         async updateFavoritesList(){
             console.log("here");
             this.myFavoritesList = await this.getAllBooksFromList('favorites');
-        }
+        },
+
+        async removeItem(book){
+            this.removeFromList('favorites', book)
+            this.updateCompletedList();
+        
+        },
+
 
     }
 

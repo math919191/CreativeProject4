@@ -7,6 +7,8 @@
             <input type="button" class="button" value="GET ALL THOSE BOOKS" @click="getAllBooks()">
         </form>
         <div class="image" v-for="result in searchResults" :key="result.id">
+        <div class="rec-book"><img :src =result.volumeInfo.imageLinks.thumbnail></div>
+
             <h2>{{result.volumeInfo.title}}</h2>
             <p>{{result.volumeInfo.authors}}</p>
             <button class="button" @click="addToDatabase(result)">Add To Database</button>
@@ -78,12 +80,14 @@ export default {
             //if it's not already in the database add it to the database
             
             this.inDatabase = await this.getIdIfInDatabase(result.id);
+            console.log("this in database", this.inDatabase);
             if (this.inDatabase.data != false){
                 this.bookID = this.inDatabase.data;
             } else {
-                await this.addToDatabase(result);
+                let info = await this.addToDatabase(result);
+                console.log("this is info", info);
             }
-            
+            console.log("bookID", this.bookID);
             this.whichList = whichList;
              
             try {
@@ -120,21 +124,19 @@ export default {
                 console.log(error);
             }
         },
-        async addToDatabase(result) {
-            
-            this.result = result;
+        async addToDatabase(myResult) {
         
             try {
                 let r2 = await axios.post('/api/books', {
-                    result: this.result,
+                    result: myResult,
                 });
-                this.addItem = r2.data;
-            
-                this.bookID = r2.data.id;
+                //this.addItem = r2.data;
+                this.bookID = r2.data._id;
+                return r2;
             } catch (error){
                 console.log(error);
             }
-        
+
         },
     }
 }

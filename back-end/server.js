@@ -57,7 +57,7 @@ mongoose.connect(myUrl, {
           book.inReadingList = true;
       } 
       
-      book.save();
+      await book.save();
       res.sendStatus(200);
       
     } catch (error){
@@ -81,11 +81,13 @@ mongoose.connect(myUrl, {
       } else if (req.body.whichList == 'booksToRead'){
           book.inReadingList = false;
       } 
+      
+      console.log(book.title);
       console.log(book.inCompletedList);
       
-      book.save();
+      await book.save();
 
-      res.sendStatus(200);
+      res.send(bood._id);
       
     } catch (error){
       console.log(error);
@@ -111,8 +113,9 @@ mongoose.connect(myUrl, {
     });
 
     try {
-      await book.save();
+      book.save();
       res.send(book);
+      //res.sendStatus(200);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -158,7 +161,7 @@ mongoose.connect(myUrl, {
     try {
       
       await Book.deleteOne({
-        id: req.params.id,
+        _id: req.params.id,
       });
   
       res.sendStatus(200);
