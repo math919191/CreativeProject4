@@ -9,14 +9,15 @@
                     <p>By: {{ book.author }}</p>
 
                     <div class="rating">
-                    <star-rating @rating-selected="setRating" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>           
+                               
                     </div>
 
                     <div class="date">
-                        {{dateCompleted}}
-                        <div v-if="Edit===true">
+                        <div>
                             <form>
+                                <star-rating @rating-selected="setRating; update(book)" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>
                                 <input id="dateCompleted" type="date">
+                                <input class="button" type="button" value="Save" @click="update(book)">
                             </form>
                         </div>
                     </div>
@@ -26,7 +27,6 @@
                     </div>
                     <button @click="removeFromList('completed', book)">Remove From Completed List</button>                    
                     <button @click="addToList('favorites', book)">Add To Favorites List</button>
-                    <button @click="edit()">Edit it</button>
             </div>
             <br>
             <br>
@@ -39,6 +39,7 @@
 
 <script>
 import { databasemixins } from '../mixins/databasemixins' // import mixin
+import axios from "axios"
 import StarRating from 'vue-star-rating'
 export default {
     mixins: [databasemixins], // register mixin
@@ -47,7 +48,8 @@ export default {
     data() {
         return {
           myCompletedList: [],   
-          rating: 0,         
+            rating: 0,
+            date: 0,
         }
     },
 
@@ -56,6 +58,7 @@ export default {
     },
 
     mounted() {
+        console.log("mounted");
         this.updateCompletedList();
     },
 
@@ -65,8 +68,23 @@ export default {
             this.myCompletedList = await this.getAllBooksFromList('completed');
             
         },
-        setRating: function(rating) {
-            this.rating=rating;
+        setRating: function(rating){
+            console.log(rating);
+            this.rating= rating;
+        },
+        async update(book) {
+            try {
+                console.log(book._id);
+                await axios.put("/api/books/" + book._id, {
+                    rating: this.rating,
+                    dateCompleted: this.date,
+                });
+                this.rating = 0;
+                this.updateCompletedList;
+                return true;
+            } catch(error) {
+                console.log(error);
+            }
         }
     }
 

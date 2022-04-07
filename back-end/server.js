@@ -30,13 +30,12 @@ mongoose.connect(myUrl, {
     coverImage: String, //holds the api string to image
     dateCompleted: String,
     notes: Array,
-    numOfStars: Number,
+    rating: Number,
     ranking: Number,
     inFavorites: Boolean,
     inReadingList: Boolean,
     inCompletedList: Boolean,
     jsonID: String,
-
   });
 
   //const Book = mongoose.model('Book', bookSchema);
@@ -93,7 +92,6 @@ mongoose.connect(myUrl, {
     }
   });
 
-
   app.post('/api/books', async (req, res) => {
     const book = new Book({
       title: req.body.result.volumeInfo.title,
@@ -102,7 +100,7 @@ mongoose.connect(myUrl, {
       coverImage: req.body.result.volumeInfo.imageLinks.thumbnail, //holds the api string to image
       dateCompleted: "",
       notes: [],
-      numOfStars: 0,
+      rating: 0,
       ranking: 0,
       inFavorites: false,
       inReadingList: false,
