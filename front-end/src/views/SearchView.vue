@@ -80,14 +80,12 @@ export default {
             //if it's not already in the database add it to the database
             
             this.inDatabase = await this.getIdIfInDatabase(result.id);
-            console.log("this in database", this.inDatabase);
             if (this.inDatabase.data != false){
                 this.bookID = this.inDatabase.data;
             } else {
                 let info = await this.addToDatabase(result);
                 console.log("this is info", info);
             }
-            console.log("bookID", this.bookID);
             this.whichList = whichList;
              
             try {
@@ -105,7 +103,6 @@ export default {
         async getAllBooks(){
             try {
                 let myBooks = await axios.get('/api/allbooks');
-                console.log(myBooks);
                 return myBooks.data;
             } catch (error){
                 console.log(error);
@@ -114,7 +111,6 @@ export default {
         
         async getIdIfInDatabase(jsonID){
             try {
-                console.log("givenJSON", jsonID);
                 this.jsonID = jsonID;
                 let response = await axios.get("/api/books/" + this.jsonID)
                 
