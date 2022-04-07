@@ -1,7 +1,6 @@
 <template>
     <div>
         <p>This is the Completed List. These are some of my favorite books!</p>
-        <button  @click="updateCompletedList()">Gets Completed List</button>
         
          <div v-for="book in this.myCompletedList" :key="book.id">
             <div class="book">
@@ -34,6 +33,10 @@ export default {
         return {
           myCompletedList: [],            
         }
+    },
+
+    mounted() {
+        this.updateCompletedList();
     },
 
     methods: {

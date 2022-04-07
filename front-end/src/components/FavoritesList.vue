@@ -1,8 +1,7 @@
 <template>
     <div>
-        <!-- <p>This is the Favorites List. These are some of my favorite books!</p>
-        <button  @click="updateFavoritesList()">Gets Favorites List</button>
-         -->
+        <p>This is the Favorites List. These are some of my favorite books!</p>
+        
          <div v-for="book in this.myFavoritesList" :key="book.id">
             <div class="book">
                 <div class="rec-book"><img :src =book.coverImage></div>

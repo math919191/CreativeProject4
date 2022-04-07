@@ -79,12 +79,12 @@ h1, h2, a {
   font-family: "Courgette", cursive;
 }
 
-.button, input{
-  margin: 0 5px 0 5px;
+.button, button, input{
+  margin: 5px;
   padding: 3px;
 }
 
-.button {
+.button, button {
   background-color: #E8DDB5;
 }
 

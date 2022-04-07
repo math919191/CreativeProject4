@@ -1,7 +1,6 @@
 <template>
     <div>
         <p>This is the Reading List. I hope to read all of these books!</p>
-        <button  @click="updateReadingList()">Gets Reading List</button>
         
          <div v-for="book in this.myReadingList" :key="book._id">
             <div class="book">
@@ -34,10 +33,8 @@ export default {
         }
     },
 
-    computed: {
-        myReadingLists(){
-            return this.myReadingList;
-        }
+    mounted() {
+        this.updateReadingList();
     },
 
     methods: {
@@ -46,8 +43,6 @@ export default {
         }
 
     }
-
-
 
 }
 
