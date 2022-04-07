@@ -11,14 +11,14 @@
 
             <h2>{{result.volumeInfo.title}}</h2>
             <p>{{result.volumeInfo.authors}}</p>
-            <button class="button" @click="addToDatabase(result)">Add To Database</button>
+            <!-- <button class="button" @click="addToDatabase(result)">Add To Database</button> -->
             <button class="button" @click="addToListFromSearch('completed', result)">Add To Completed List</button>
             <button class="button" @click="addToListFromSearch('favorites', result)">Add To Favorites List</button>
             <button class="button" @click="addToListFromSearch('booksToRead', result)">Add To Books To Read List</button>
-            <button class="button" @click="removeFromList('completed', result)">Remove Completed</button>
+            <!-- <button class="button" @click="removeFromList('completed', result)">Remove Completed</button>
             <button class="button" @click="removeFromList('favorites', result)">Remove Favorites</button>
             <button class="button" @click="removeFromList('booksToRead', result)">Remove Reading List</button>
-            
+             -->
         </div>
         
 

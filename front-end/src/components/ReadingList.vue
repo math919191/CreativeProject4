@@ -2,7 +2,7 @@
     <div>
         <p>This is the Reading List. I hope to read all of these books!</p>
         
-         <div v-for="book in this.myReadingList" :key="book._id">
+         <div v-for="book in this.myReadingListComputed" :key="book._id">
             <div class="book">
                 <div class="rec-book"><img :src =book.coverImage></div>
                     <h6>{{ book.title }}</h6>
@@ -10,7 +10,7 @@
                     <div class="description">
                         <p>{{ book.description }}</p>
                     </div>
-                    <button @click="removeItem(book)">Remove From Reading List</button>                    
+                    <button @click="removeReadingItem(book)">Remove From Reading List</button>                    
                     <button @click="addToList('completed', book)">Add To Completed List</button>
                     <button @click="addToList('favorites', book)">Add To Favorites List</button>
             </div>
@@ -39,16 +39,21 @@ export default {
         this.updateReadingList();
     },
 
+    computed: {
+        myReadingListComputed(){
+            return this.myReadingList;
+        } 
+
+    },
+
     methods: {
         async updateReadingList(){
             this.myReadingList = await this.getAllBooksFromList('readingList');
         },
 
-        async removeItem(book){
-            //this.removeFromList('booksToRead', book)
-            this.removeFromList('booksToRead', book)
-            this.updateCompletedList();
-        
+        async removeReadingItem(book){
+            await this.removeFromList('booksToRead', book);
+            await this.updateReadingList();        
         },
 
 

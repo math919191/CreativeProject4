@@ -68,14 +68,13 @@ export default {
 
     methods: {
         async updateCompletedList(){
-            console.log("here");
             this.myCompletedList = await this.getAllBooksFromList('completed');
             
         },
 
         async removeItem(book){
-            this.removeFromList('completed', book)
-            this.updateCompletedList();
+            await this.removeFromList('completed', book);
+            await this.updateCompletedList();
         
         },
 
