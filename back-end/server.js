@@ -46,7 +46,7 @@ mongoose.connect(myUrl, {
     try {
       
       let book = await Book.findOne({
-        id: req.params.id
+        _id: req.params.id
       });
       if (req.body.whichList == 'completed'){
           book.inCompletedList = true;
@@ -56,7 +56,7 @@ mongoose.connect(myUrl, {
           book.inReadingList = true;
       } 
       
-      book.save();
+      await book.save();
       res.sendStatus(200);
       
     } catch (error){
@@ -69,7 +69,7 @@ mongoose.connect(myUrl, {
     try {
       
       let book = await Book.findOne({
-        id: req.params.id
+        _id: req.params.id
       });
       console.log(book.title);
       console.log(req.body.whichList);
@@ -80,11 +80,13 @@ mongoose.connect(myUrl, {
       } else if (req.body.whichList == 'booksToRead'){
           book.inReadingList = false;
       } 
+      
+      console.log(book.title);
       console.log(book.inCompletedList);
       
-      book.save();
+      await book.save();
 
-      res.sendStatus(200);
+      res.send(book._id);
       
     } catch (error){
       console.log(error);
@@ -109,8 +111,9 @@ mongoose.connect(myUrl, {
     });
 
     try {
-      await book.save();
+      book.save();
       res.send(book);
+      //res.sendStatus(200);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -126,7 +129,7 @@ mongoose.connect(myUrl, {
       if (myBook == null){
         res.send(false);
       } else {
-        res.send(myBook.id);
+        res.send(myBook._id);
       }
 
     } catch {
@@ -156,7 +159,7 @@ mongoose.connect(myUrl, {
     try {
       
       await Book.deleteOne({
-        id: req.params.id,
+        _id: req.params.id,
       });
   
       res.sendStatus(200);
@@ -169,4 +172,3 @@ mongoose.connect(myUrl, {
   });
 
   app.listen(3000, () => console.log('Server listening on port 3000!'));
-
