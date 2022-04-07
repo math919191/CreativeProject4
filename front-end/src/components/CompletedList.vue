@@ -92,7 +92,7 @@ export default {
                 return false;
             }
             else {
-                                console.log(book.dateCompleted);
+                console.log(book.dateCompleted);
 
                 return true;
             }
