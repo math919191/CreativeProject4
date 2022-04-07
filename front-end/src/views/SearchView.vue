@@ -3,8 +3,8 @@
         <h1>Search</h1>
         <form>
             <input placeholder="Search for a Book" type="text" v-model="userSearch">
-            <input class="button" type="button" @click="search()" value="Search">
-            <input class="button" type="button" @click="getAllBooks()" value="GET ALL THOSE BOOKS">
+            <input type="button" class="button" value="search" @click="search()">
+            <input type="button" class="button" value="GET ALL THOSE BOOKS" @click="getAllBooks()">
         </form>
         <div class="image" v-for="result in searchResults" :key="result.id">
             <h2>{{result.volumeInfo.title}}</h2>

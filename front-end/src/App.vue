@@ -79,19 +79,40 @@ h1, h2, a {
   font-family: "Courgette", cursive;
 }
 
-input {
-    margin: 5px;
+.button, button, input{
+  margin: 5px;
+  padding: 3px;
 }
-.button {
-    background-color: #E8DDB5;
-    margin: 5px;
-    padding: 3px;
+
+.button, button {
+  background-color: #E8DDB5;
+}
+.button:hover, button:hover {
+  background-color:#eee7ce;
+}
+.button:active, button:active {
+  background-color: #c1b692;
 }
 form {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 40px;
+  justify-content: center;
+}
+
+h6 {
+  font-weight: bold;
+  margin: 5px;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.description p {
+  max-width: 900px;
+  margin: 5px 50px;
 }
 
 /* nav {
