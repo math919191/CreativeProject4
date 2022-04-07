@@ -29,7 +29,6 @@ mongoose.connect(myUrl, {
     description: String,
     coverImage: String, //holds the api string to image
     dateCompleted: String,
-    notes: Array,
     rating: Number,
     ranking: Number,
     inFavorites: Boolean,
@@ -62,6 +61,22 @@ mongoose.connect(myUrl, {
     } catch (error){
       console.log(error);
       res.sendStatus(500);    
+    }
+  });
+
+  app.put('/api/books/edit/:id', async (req, res) => {
+    try {
+      let book = await Book.findOne({
+        _id: req.params.id
+      });
+      console.log()
+      book.rating = req.body.rating;
+      book.dateCompleted = req.body.dateCompleted;
+      await book.save();
+      res.sendStatus(200);
+    } catch(error) {
+      console.log(error);
+      res.sendStatus(500);
     }
   });
     

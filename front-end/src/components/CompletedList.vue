@@ -13,15 +13,10 @@
                     </div>
 
                     <div class="date">
-<<<<<<< HEAD
                         <div>
-=======
-                        {{dateCompleted}}
-                        <!-- <div v-if="Edit===true">
->>>>>>> 13e8abaca86291955950fe39b776790d0aad50f9
                             <form>
-                                <star-rating @rating-selected="setRating; update(book)" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>
-                                <input id="dateCompleted" type="date">
+                                <star-rating @rating-selected="setRating" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>
+                                <input v-model="dateCompleted" type="date">
                                 <input class="button" type="button" value="Save" @click="update(book)">
                             </form>
                         </div> -->
@@ -53,13 +48,8 @@ export default {
     data() {
         return {
           myCompletedList: [],   
-<<<<<<< HEAD
             rating: 0,
-            date: 0,
-=======
-          rating: 0,
-          dateCompleted: "",         
->>>>>>> 13e8abaca86291955950fe39b776790d0aad50f9
+            dateCompleted: "",
         }
     },
 
@@ -81,23 +71,24 @@ export default {
     methods: {
         async updateCompletedList(){
             this.myCompletedList = await this.getAllBooksFromList('completed');
-            
         },
         async removeItem(book){
             await this.removeFromList('completed', book);
             await this.updateCompletedList();
         
         },
-        setRating: function(rating){
+        setRating(rating){
             console.log(rating);
             this.rating= rating;
         },
         async update(book) {
             try {
                 console.log(book._id);
-                await axios.put("/api/books/" + book._id, {
+                console.log(this.rating);
+                console.log(this.dateCompleted);
+                await axios.put("/api/books/edit/" + book._id, {
                     rating: this.rating,
-                    dateCompleted: this.date,
+                    dateCompleted: this.dateCompleted,
                 });
                 this.rating = 0;
                 this.updateCompletedList;
