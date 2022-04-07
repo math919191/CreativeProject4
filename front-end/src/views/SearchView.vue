@@ -25,9 +25,7 @@
 </template>
 
 <script>
-
 import shared from '../shared.js'
-
 import axios from "axios"
 export default {
     name: "SearchView", 
@@ -60,8 +58,6 @@ export default {
                 console.log(error);
             }
         },
-
-
         async removeFromList(whichList, whichBook){
             try {
                 
@@ -69,18 +65,15 @@ export default {
                 await axios.put("/api/books/remove/" + whichBook.id, {
                     whichList: this.whichList,
                 });
-
                 if (whichBook.inCompletedList == false && whichBook.inFavorites == false && whichBook.inReadingList == false ){
                     //delete the book 
                     await axios.delete("/api/books/" + whichBook.id);
                 }
-
                 return true;
             } catch (error) {
                 console.log(error)
             }
         },
-
         async addToListFromSearch(whichList, result){
             //if it's not already in the database add it to the database
             
@@ -101,12 +94,10 @@ export default {
                 //this.findItem = null;
                 //this.getItems();
                 return true;
-
             } catch (error){
                 console.log(error);
             }
         },
-
         async getAllBooks(){
             try {
                 let myBooks = await axios.get('/api/allbooks');
@@ -114,10 +105,8 @@ export default {
                 return myBooks.data;
             } catch (error){
                 console.log(error);
-
             }
         },
-
         
         async getIdIfInDatabase(jsonID){
             try {
@@ -131,13 +120,11 @@ export default {
                 console.log(error);
             }
         },
-
         async addToDatabase(result) {
             
             this.result = result;
         
             try {
-
                 let r2 = await axios.post('/api/books', {
                     result: this.result,
                 });
@@ -149,27 +136,22 @@ export default {
             }
         
         },
-
-
-
     }
-
 }
+
 
 </script>
 
 
 <style scoped>
-
+/* 
 .myBook {
     width: 500px;
     height: 500px;
     margin: 20px;
     border: thick black 10px;
-}
-h2 {
-  font-family: "Courgette", cursive;
-}
+} */
+
 
 </style>
 

@@ -7,7 +7,8 @@
             <button class="button" @click="switchComponent('noList')">No List</button>
             
         </div>
-        <component :is="dynamicComponent" />
+        <component v-bind:is="dynamicComponent"></component>
+
     </div>
 </template>
 
@@ -18,7 +19,7 @@
     import NoSelectedList from "../components/NoSelectedList.vue"
     
     export default {
-        name: "BooksLists", 
+        name: "BooksLists",  
         data() {
             return {
                 dynamicComponent: NoSelectedList,    
@@ -41,7 +42,7 @@
                     this.dynamicComponent = NoSelectedList;
                 }
 
-            }
+            },
         }
     }
 
