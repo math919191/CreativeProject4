@@ -72,8 +72,6 @@ mongoose.connect(myUrl, {
       let book = await Book.findOne({
         _id: req.params.id
       });
-      console.log(book.title);
-      console.log(req.body.whichList);
       if (req.body.whichList == 'completed'){
           book.inCompletedList = false;
       } else if (req.body.whichList == 'favorites'){
@@ -82,14 +80,9 @@ mongoose.connect(myUrl, {
           book.inReadingList = false;
       } 
       
-      console.log(book.title);
-      console.log(book.inCompletedList);
-      
       await book.save();
 
-      console.log(book.inCompletedList, book.inFavorites, book.inReadingList);
-
-
+    
       if (book.inCompletedList == false && book.inFavorites == false && book.inReadingList == false ){
         //delete the book if it's not in any lists
         await Book.deleteOne({
