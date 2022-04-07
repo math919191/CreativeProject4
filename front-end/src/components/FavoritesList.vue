@@ -46,8 +46,7 @@ export default {
 
         async removeItem(book){
             this.removeFromList('favorites', book)
-            this.updateCompletedList();
-        
+            this.updateFavoritesList();
         },
 
 

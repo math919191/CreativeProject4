@@ -28,16 +28,16 @@ export const databasemixins = {
         try {
             
             this.whichList = whichList;
-            await axios.put("/api/books/remove/" + whichBook.id, {
+            await axios.put("/api/books/remove/" + whichBook._id, {
                 whichList: this.whichList,
             });
             
             if (whichBook.inCompletedList == false && whichBook.inFavorites == false && whichBook.inReadingList == false ){
               //delete the book if it's not in any lists
-              await axios.delete("/api/books/" + whichBook.id);
+              await axios.delete("/api/books/" + whichBook._id);
+              console.log("attempting delete");
             }
-            console.log("REMOVE");
-            
+
             return true;
         } catch (error) {
             console.log(error)

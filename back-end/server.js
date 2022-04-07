@@ -70,7 +70,7 @@ mongoose.connect(myUrl, {
     try {
       
       let book = await Book.findOne({
-        id: req.params.id
+        _id: req.params.id
       });
       console.log(book.title);
       console.log(req.body.whichList);
@@ -87,7 +87,7 @@ mongoose.connect(myUrl, {
       
       await book.save();
 
-      res.send(bood._id);
+      res.send(book._id);
       
     } catch (error){
       console.log(error);

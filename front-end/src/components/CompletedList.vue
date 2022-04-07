@@ -2,7 +2,7 @@
     <div>
         <p>This is the Completed List. These are some of my favorite books!</p>
         
-         <div v-for="book in this.myCompletedList" :key="book.id">
+         <div v-for="book in this.myCompletedListComputed" :key="book.id">
             <div class="book">
                 <div class="rec-book"><img :src =book.coverImage></div>
                     <h6>{{ book.title }}</h6>
@@ -58,6 +58,12 @@ export default {
 
     mounted() {
         this.updateCompletedList();
+    },
+
+    computed: {
+        myCompletedListComputed(){
+            return this.myCompletedList;
+        }
     },
 
     methods: {
