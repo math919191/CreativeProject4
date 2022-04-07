@@ -5,18 +5,20 @@
          <div v-for="book in this.myReadingList" :key="book._id">
             <div class="book">
                 <div class="rec-book"><img :src =book.coverImage></div>
-                <div class="description">
                     <h6>{{ book.title }}</h6>
                     <p>By: {{ book.author }}</p>
-                    <p>{{ book.description }}</p>
+                    <div class="description">
+                        <p>{{ book.description }}</p>
+                    </div>
                     <button @click="removeFromList('booksToRead', book)">Remove From Reading List</button>                    
                     <button @click="addToList('completed', book)">Add To Completed List</button>
                     <button @click="addToList('favorites', book)">Add To Favorites List</button>
-                </div>
             </div>
+            <br>
+            <br>
         </div>
-        
-        
+        <br>
+        <br>
 
     </div>
 </template>

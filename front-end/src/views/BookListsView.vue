@@ -3,9 +3,7 @@
         <div class="buttons">
             <button class="button" @click="switchComponent('favorites')">Favorites List</button>
             <button class="button" @click="switchComponent('completed')">Completed List</button>
-            <button class="button" @click="switchComponent('booksToRead')">Reading List</button>
-            <button class="button" @click="switchComponent('noList')">No List</button>
-            
+            <button class="button" @click="switchComponent('booksToRead')">Reading List</button>            
         </div>
         <component v-bind:is="dynamicComponent"></component>
 
@@ -16,13 +14,12 @@
     import CompletedList from "../components/CompletedList.vue"
     import FavoritesList from "../components/FavoritesList.vue"
     import ReadingList from "../components/ReadingList.vue"
-    import NoSelectedList from "../components/NoSelectedList.vue"
     
     export default {
         name: "BooksLists",  
         data() {
             return {
-                dynamicComponent: NoSelectedList,    
+                dynamicComponent: ReadingList,    
             }
         },
         components: {
@@ -38,10 +35,7 @@
                     this.dynamicComponent = FavoritesList;
                 } else if (whichList == 'completed'){
                     this.dynamicComponent = CompletedList;
-                } else if (whichList == 'noList'){
-                    this.dynamicComponent = NoSelectedList;
                 }
-
             },
         }
     }

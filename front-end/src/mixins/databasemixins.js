@@ -36,7 +36,7 @@ export const databasemixins = {
               //delete the book if it's not in any lists
               await axios.delete("/api/books/" + whichBook.id);
             }
-
+            console.log("REMOVE");
             return true;
         } catch (error) {
             console.log(error)
