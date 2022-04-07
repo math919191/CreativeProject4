@@ -1,8 +1,9 @@
 ## Read me!!
 
-Database info -- 
-Basically when we were searching the database things would come up that didn't have working images because we weren't showing the images. So when we added it to the lists, it wouldn't show up. So when you tried to delete something it wouldn't delete that item, but one above or below becuase the one with the broken image wouldn't show up. I "fixed" this / worked around this by making it so in the search ONLY things with working images show up by adding the image to the search. This is still problematic because searches like "just mercy" won't show up with anything. 
-The other thing is that for some reason the delete isn't working. I'm working on figure that out. But even if all the lists are empty, there is still books in the database because it isn't deleting it even if all the lists are empty. I'm working on figuring that one out. On the front end everything is fine, but it becomes problematic when you are storing 100 unnecessary books.
+ - Database info -- 
+
+ - Basically when we were searching the database things would come up that didn't have working images because we weren't showing the images. So when we added it to the lists, it wouldn't show up. So when you tried to delete something it wouldn't delete that item, but one above or below becuase the one with the broken image wouldn't show up. I "fixed" this / worked around this by making it so in the search ONLY things with working images show up by adding the image to the search. This is still problematic because searches like "just mercy" won't show up with anything. 
+ - The other thing is that for some reason the delete isn't working. I'm working on figure that out. But even if all the lists are empty, there is still books in the database because it isn't deleting it even if all the lists are empty. I'm working on figuring that one out. On the front end everything is fine, but it becomes problematic when you are storing 100 unnecessary books.
 
 ![image_67156225 2](https://user-images.githubusercontent.com/95512267/162015993-919b0402-3dec-4d47-a145-65869cee1e62.JPG)
 
