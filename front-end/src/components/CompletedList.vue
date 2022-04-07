@@ -7,13 +7,26 @@
                 <div class="rec-book"><img :src =book.coverImage></div>
                     <h6>{{ book.title }}</h6>
                     <p>By: {{ book.author }}</p>
+
+                    <div class="rating">
+                    <star-rating @rating-selected="setRating" :animate="true" :show-rating="false" :active-on-click="true" active-color="#D2042D" :star-size=20></star-rating>           
+                    </div>
+
+                    <div class="date">
+                        {{dateCompleted}}
+                        <div v-if="Edit===true">
+                            <form>
+                                <input id="dateCompleted" type="date">
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="description">
                         <p>{{ book.description }}</p>
                     </div>
                     <button @click="removeFromList('completed', book)">Remove From Completed List</button>                    
                     <button @click="addToList('favorites', book)">Add To Favorites List</button>
                     <button @click="edit()">Edit it</button>
-                    <button @click="edit()">Add notes</button>
             </div>
             <br>
             <br>
@@ -26,14 +39,20 @@
 
 <script>
 import { databasemixins } from '../mixins/databasemixins' // import mixin
+import StarRating from 'vue-star-rating'
 export default {
     mixins: [databasemixins], // register mixin
     name: 'CompletedBooks',
 
     data() {
         return {
-          myCompletedList: [],            
+          myCompletedList: [],   
+          rating: 0,         
         }
+    },
+
+    components: {
+        StarRating
     },
 
     mounted() {
@@ -45,8 +64,10 @@ export default {
             console.log("here");
             this.myCompletedList = await this.getAllBooksFromList('completed');
             
+        },
+        setRating: function(rating) {
+            this.rating=rating;
         }
-
     }
 
 
@@ -54,3 +75,10 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.rating {
+    display: flex;
+    justify-content: center;
+}
+</style>
