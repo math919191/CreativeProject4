@@ -79,6 +79,21 @@ h1, h2, a {
   font-family: "Courgette", cursive;
 }
 
+.button, input{
+  margin: 0 5px 0 5px;
+  padding: 3px;
+}
+
+.button {
+  background-color: #E8DDB5;
+}
+
+form {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 40px;
+  justify-content: center;
+}
 /* nav {
   padding: 30px;
 }

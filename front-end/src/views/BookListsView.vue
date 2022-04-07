@@ -1,10 +1,10 @@
 <template>
     <div>
         <div class="buttons">
-            <button  @click="switchComponent('favorites')">Favorites List</button>
-            <button  @click="switchComponent('completed')">Completed List</button>
-            <button  @click="switchComponent('booksToRead')">Reading List</button>
-            <button  @click="switchComponent('noList')">No List</button>
+            <button class="button" @click="switchComponent('favorites')">Favorites List</button>
+            <button class="button" @click="switchComponent('completed')">Completed List</button>
+            <button class="button" @click="switchComponent('booksToRead')">Reading List</button>
+            <button class="button" @click="switchComponent('noList')">No List</button>
             
         </div>
         <component :is="dynamicComponent" />

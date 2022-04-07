@@ -1,20 +1,21 @@
 <template>
     <div>  
         <h1>Search</h1>
-        <input placeholder="Search for a Book" type="text" v-model="userSearch">
-        <button @click="search()">Search</button>
-        <button @click="getAllBooks()">GET ALL THOSE BOOKS</button>
-        
+        <form>
+            <input placeholder="Search for a Book" type="text" v-model="userSearch">
+            <input type="button" class="button" value="search" @click="search()">
+            <input type="button" class="button" value="GET ALL THOSE BOOKS" @click="getAllBooks()">
+        </form>
         <div class="image" v-for="result in searchResults" :key="result.id">
             <h2>{{result.volumeInfo.title}}</h2>
             <p>{{result.volumeInfo.authors}}</p>
-            <button @click="addToDatabase(result)">Add To Database</button>
-            <button @click="addToListFromSearch('completed', result)">Add To Completed List</button>
-            <button @click="addToListFromSearch('favorites', result)">Add To Favorites List</button>
-            <button @click="addToListFromSearch('booksToRead', result)">Add To Books To Read List</button>
-            <button @click="removeFromList('completed', result)">Remove Completed</button>
-            <button @click="removeFromList('favorites', result)">Remove Favorites</button>
-            <button @click="removeFromList('booksToRead', result)">Remove Reading List</button>
+            <button class="button" @click="addToDatabase(result)">Add To Database</button>
+            <button class="button" @click="addToListFromSearch('completed', result)">Add To Completed List</button>
+            <button class="button" @click="addToListFromSearch('favorites', result)">Add To Favorites List</button>
+            <button class="button" @click="addToListFromSearch('booksToRead', result)">Add To Books To Read List</button>
+            <button class="button" @click="removeFromList('completed', result)">Remove Completed</button>
+            <button class="button" @click="removeFromList('favorites', result)">Remove Favorites</button>
+            <button class="button" @click="removeFromList('booksToRead', result)">Remove Reading List</button>
             
         </div>
         
