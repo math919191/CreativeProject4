@@ -87,6 +87,16 @@ mongoose.connect(myUrl, {
       
       await book.save();
 
+      console.log(book.inCompletedList, book.inFavorites, book.inReadingList);
+
+
+      if (book.inCompletedList == false && book.inFavorites == false && book.inReadingList == false ){
+        //delete the book if it's not in any lists
+        await Book.deleteOne({
+          _id: req.params.id,
+        });
+      }
+
       res.send(book._id);
       
     } catch (error){
