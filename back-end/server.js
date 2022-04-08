@@ -16,13 +16,6 @@ mongoose.connect(myUrl, {
   useNewUrlParser: true
 });
 
-// Create a scheme for items in the museum: a title and a path to an image.
-// const bookSchema = new mongoose.Schema({
-//     title: String,
-//     //description: String,
-//     //jsonObject: String,
-//   });
-
   const completedBookSchema = new mongoose.Schema({
     title: String,
     author: Array,
@@ -37,7 +30,6 @@ mongoose.connect(myUrl, {
     jsonID: String,
   });
 
-  //const Book = mongoose.model('Book', bookSchema);
   const Book = mongoose.model('completedBook', completedBookSchema);
 
 
@@ -135,7 +127,7 @@ mongoose.connect(myUrl, {
     try {
       book.save();
       res.send(book);
-      //res.sendStatus(200);
+      
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
