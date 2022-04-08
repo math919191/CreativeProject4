@@ -70,8 +70,12 @@ mongoose.connect(myUrl, {
         _id: req.params.id
       });
       console.log()
-      book.rating = req.body.rating;
-      book.dateCompleted = req.body.dateCompleted;
+      if (req.body.rating !== 0) {
+        book.rating = req.body.rating;
+      }
+      if (req.body.dateCompleted) {
+        book.dateCompleted = req.body.dateCompleted;
+      }
       await book.save();
       res.sendStatus(200);
     } catch(error) {
