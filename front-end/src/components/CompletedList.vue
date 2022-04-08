@@ -24,7 +24,7 @@
                                 </div>
                                 <input class="button" type="button" value="Save" @click="update(book)">
                             </form>
-                        </div> -->
+                        </div>
                     </div>
 
                     <div class="description">
